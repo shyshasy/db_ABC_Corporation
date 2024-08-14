@@ -1,6 +1,6 @@
-const { addSurvey, getSurvey, updateSurvey, destroySurvey } = require("./surveyModule");
-const { addAnswer, getAnswer, updateAnswer, destroyAnswer } = require("./answerModule");
-const { addQuestion, getQuestion, updateQuestion, destroyQuestion } = require("./questionModule");
+const { addSurvey, getSurvey, updateSurvey, destroySurvey } = require("./exampleSurvey");
+const { addAnswer, getAnswer, updateAnswer, destroyAnswer } = require("./exampleAnswer");
+const { addQuestion, getQuestion, updateQuestion, destroyQuestion } = require("./exampleQuestion");
 
 
 
