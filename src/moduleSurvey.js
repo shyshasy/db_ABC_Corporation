@@ -9,10 +9,10 @@ const collectionSurvey = db.collection("surveys");
 async function generateUniqueSurveyId() {
   const lastSurvey = await collectionSurvey
     .find({})
-    .sort({ surveyId: -1 })
+    .sort({ id: -1 })
     .limit(1)
     .toArray();
-  return lastSurvey.length > 0 ? lastSurvey[0].surveyId + 1 : 1;
+  return lastSurvey.length > 0 ? lastSurvey[0].id + 1 : 1;
 }
 
 /**
@@ -21,9 +21,9 @@ async function generateUniqueSurveyId() {
  */
 async function addSurvey(document) {
   try {
-    document.surveyId = await generateUniqueSurveyId();
+    document.id = await generateUniqueSurveyId();
     await collectionSurvey.insertOne(document);
-    console.log(`Le document ${document.surveyId} a été ajouté avec succès.`);
+    console.log(`Le document ${document.id} a été ajouté avec succès.`);
   } catch (e) {
     console.error(`Erreur lors de l'ajout du document: ${e.message}`);
   }

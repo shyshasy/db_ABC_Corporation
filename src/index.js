@@ -7,7 +7,7 @@ const { addQuestion, getQuestion, updateQuestion, destroyQuestion } = require(".
 
 
 const question ={
-  questionId: 1,
+  id: 1,
   surveyId: 1,
   title: "Comment évalueriez-vous notre service ?",
   type: "rating",
@@ -16,7 +16,7 @@ const question ={
 
 
 const survey = {
-  surveyId: 1,
+  id: 1,
   name: "Enquête de Satisfaction 001",
   description: "Enquête visant à évaluer la satisfaction des clients concernant nos services.",
   createdAt: "2024-07-25T08:00:00Z",
@@ -27,7 +27,7 @@ const survey = {
 }
 
 const answer = {
-  answerId: 1,
+  id: 1,
   questionId: 1,
   title: "Très satisfait"
 }
@@ -38,9 +38,8 @@ async function main() {
     await addSurvey(survey)
     await getSurvey()
     await updateSurvey(1, survey)
-    await destroySurvey(1)
-
-
+    await destroySurvey(3)
+    
     await addAnswer(answer)
     await getAnswer()
     await updateAnswer(1, answer)
