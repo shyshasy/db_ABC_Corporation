@@ -2,19 +2,21 @@
   Cette application JavaScript permet de gérer les fiches d'enquête de satisfaction des clients. Elle utilise MongoDB comme base de données pour stocker les données et offre des fonctionnalités pour effectuer des opérations CRUD (Create, Read, Update, Delete) sur les enquêtes, les questions et les réponses.
 
   ## Prérequis
-  Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
+
+  ## Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 
   Node.js (version 12 ou supérieure)
   MongoDB (version 4.0 ou supérieure)
   Installation
   Pour configurer le projet sur votre machine locale, suivez ces étapes :
 
-  Clonez le repository :
+  ## Clonez le repository :
 
   bash
   Copier le code
   git clone https://github.com/shyshasy/db_ABC_Corporation.git
-  Accédez au dossier du projet :
+
+  ## Accédez au dossier du projet :
 
   bash
   Copier le code
@@ -24,7 +26,8 @@
   bash
   Copier le code
   npm install
-  Configuration de la base de données :
+
+  ## Configuration de la base de données :
 
   Le fichier config/database.js contient la configuration nécessaire pour interagir avec la base de données et ses différentes collections. Avant de lancer l'application, vous devez mettre en place la base de données et les collections avec les commandes suivantes :
 
