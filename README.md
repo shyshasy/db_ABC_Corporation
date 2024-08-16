@@ -15,15 +15,21 @@
 
   1. Clonez le dépôt :
 
+ ```bash
   git clone https://github.com/shyshasy/db_ABC_Corporation.git
+  ```
 
   2. Accédez au dossier du projet :
    
+  ```bash
   cd fiche_enquete
+  ```
 
   3. Installer les dépendances :
 
+ ```bash
   npm install
+  ```
 
  ## Configuration de la Base de Données
 
@@ -206,7 +212,9 @@
 
   
   
+ ```bash
   npm start
+  ```
 
   # Auteur
 
