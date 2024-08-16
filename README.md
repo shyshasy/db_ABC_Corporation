@@ -75,10 +75,8 @@
 
   ## Paramètre :
 
-  document(Object) : Un objet représentant l'enquête. 
-
-  Exemple :
-  json
+  document (Object) : name:string, description:string, createdAt:date, createdBy:Object { employeeName:string, employeeRole:string }, 
+  questions:Array<Object>
 
   ## Copier le code
 
@@ -90,18 +88,19 @@
 
   ## getSurvey()
 
-  Récupère toutes les enquêtes. 
-  Retour : Un tableau d'objets représentant les enquêtes.
-
+    Récupère toutes les enquêtes.
+    Retour : Array<Object>
+    
   ## updateSurvey(surveyId, updateData)
 
   Met à jour une enquête précise. 
   Paramètres :
 
-  surveyId(String) : L'identifiant de l'enquête à mettre à jour.
+  surveyId:string
+  updateData:Object : name:string, description:string, 
 
-  updateData(Object) : Un objet contenant les champs à mettre à jour. 
   Exemple :
+  
   json
 
   Copier le code
@@ -111,10 +110,11 @@
 
   ## destroySurvey(surveyId)
 
-  Supprimer une enquête. 
+  Supprime une enquête.
+  
   Paramètre :
 
-  surveyId(String) : L'identifiant de l'enquête à supprimer.
+  surveyId:string
 
   3.questionModule.js
   Ce module gère les opérations CRUD pour la collection questions.
@@ -125,9 +125,10 @@
 
   ## Paramètre :
 
-  document(Object) : Un objet représentant la question. 
+ document (Object) : title:string, surveyId:string
 
   Exemple :
+  
   json
 
  ## Copier le code
@@ -139,16 +140,16 @@
   ## getQuestion()
 
   Récupère toutes les questions. 
-  Retour : Un tableau d'objets représentant les questions.
+  Retour : Array<Object>
 
   ## updateQuestion(questionId, updateData)
 
   Met à jour une question précise. 
   Paramètres :
 
-   questionId(String) : L'identifiant de la question à mettre à jour.
+   questionId:string
+   updateData:Object : title:string, 
 
-  updateData(Object) : Un objet contenant les champs à mettre à jour. 
   Exemple :
   json
 
@@ -156,13 +157,14 @@
   {
     "text": "Updated Question Text"
   }
+
   destroyQuestion(questionId)
 
   Supprimez une question. 
 
  ## Paramètre :
 
-  questionId(String) : L'identifiant de la question à supprimer.
+  questionId:string
 
   4.answerModule.js
 
@@ -174,7 +176,8 @@
 
   ## Paramètre :
 
-  document(Object) : Un objet représentant la réponse. 
+  document (Object) : title:string, questionId:string 
+  
   Exemple :
   json
 
@@ -187,7 +190,7 @@
   ## getAnswer()
 
   Récupère toutes les réponses. 
-  Retour : Un tableau d'objets représentant les réponses.
+  Retour : Array<Object>
 
  ## updateAnswer(answerId, updateData)
 
@@ -195,8 +198,9 @@
 
   ## Paramètres :
 
-  answerId(String) : L'identifiant de la réponse à mettre à jour.
-  updateData(Object) : Un objet contenant les champs à mettre à jour. 
+  answerId:string
+  updateData:Object : title:string, 
+
   Exemple :
   json
 
@@ -211,8 +215,9 @@
 
  ## Paramètre :
 
-  answerId(String) : L'identifiant de la réponse à supprimer.
-  Utilisation
+  answerId:string
+
+  ## Utilisation
 
  ## Pour démarrer l'application, exécutez la commande suivante :
 
