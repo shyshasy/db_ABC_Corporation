@@ -72,8 +72,8 @@
       description: "Évaluation de la satisfaction des clients.",
       createdAt: "2024-08-15",
       createdBy: {
-          employeeName: "Camara",
-          employeeRole: "Responsable du service client"
+          employeeName: "Fatoumata",
+          employeeRole: "Responsable d'achats et ventes"
       },
       questions: []
   };
