@@ -21,7 +21,7 @@
   ### Accédez au dossier du projet :
 
   ```bash
-  cd fiche_enquete
+  cd db_ABC_Corporation
   ```
   ### Installer les dépendances :
 
@@ -73,7 +73,7 @@
       createdAt: "2024-08-15",
       createdBy: {
           employeeName: "Fatoumata",
-          employeeRole: "Responsable d'achats et ventes"
+          employeeRole: "Responsable d'achatset ventes"
       },
       questions: []
   };
