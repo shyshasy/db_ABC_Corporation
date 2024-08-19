@@ -12,24 +12,44 @@
 
   ## Installation
 
-  Clonez le dépôt :
+  1. **Clonez le repository :**
 
   ```bash
   git clone https://github.com/shyshasy/db_ABC_Corporation.git
   ```
 
-  ### Accédez au dossier du projet :
+  2. **Accédez au dossier du projet :**
 
   ```bash
   cd db_ABC_Corporation
   ```
-  ### Installer les dépendances :
+  3. **Installer les dépendances :**
 
   ```bash
   npm install
   ```
 
-  ### Créez la base de données :
+ 
+  
+  4. **Configurez la base de données :**
+
+ - Assurez-vous que MongoDB est en cours d'exécution sur votre machine locale.
+ - Mettez les paramètres de connexion dans 
+ `config/database.js.`
+
+## Utilisation
+
+  Pour démarrer l'application, exécutez la commande suivante :
+
+
+  ````bash
+  npm start
+  ````
+
+
+
+
+ ### Créez la base de données :
 
 
   ```bash
@@ -42,12 +62,10 @@
   db.createCollection("questions")
   db.createCollection("answers")`
   ```
+
   # Modules et Documentation
 
   L'application est structurée autour de plusieurs modules. Voici les détails sur chacun d'entre eux :
-
-  ### config/database.js
-  Ce fichier contient la configuration pour la connexion à MongoDB et la définition des collections utilisées.
 
   ### surveyModule.js
   Ce module gère les opérations CRUD pour la collection surveys.
@@ -105,8 +123,8 @@
 
   ````bash
   const survey = await getSurveyById("612c1f1c9e2f4a001f4e2a59");
-  updateSurvey(surveyId, updateData)
   ````
+ ## updateSurvey(surveyId, updateData)
 
   Paramètres :
 
@@ -173,21 +191,7 @@
   console.log(questions);`
   ````
 
-  ### getQuestionById(questionId)
-
-  Paramètres :
-
-  questionId (String) : L'ID de la question à récupérer.
-  Description : Récupère une question spécifique par son ID.
-
-  Exemple :
-
-  javascript
-
-  ````bash
-  const question = await getQuestionById("612c1f1c9e2f4a001f4e2a59");
-  ````
-
+ 
   ### updateQuestion(questionId, updateData)
 
   Paramètres :
@@ -296,15 +300,7 @@
   await destroyAnswer("612c1f1c9e2f4a001f4e2a59");
   ````
 
-  ## Utilisation
-
-  Pour démarrer l'application, exécutez la commande suivante :
-
-
-
-  ````bash
-  npm start
-  ````
+  
   # Auteur
 
   [Aichetou Taher Sy](https://github.com/shyshasy)
