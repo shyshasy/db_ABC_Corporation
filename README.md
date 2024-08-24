@@ -1,306 +1,252 @@
-  # Fiche Enquête - ABC Corporation
+# Fiche Enquête - ABC Corporation
 
-  ## Description
+## Description
 
-  Cette application JavaScript permet de gérer les fiches d'enquête de satisfaction des clients. Elle utilise MongoDB comme base de données pour stocker les données et offre des fonctionnalités pour effectuer des opérations CRUD (Create, Read, Update, Delete) sur les enquêtes, les questions et les réponses.
+Cette application JavaScript permet de gérer les fiches d'enquête de satisfaction des clients. Elle utilise MongoDB comme base de données pour stocker les données et offre des fonctionnalités pour effectuer des opérations CRUD (Create, Read, Update, Delete) sur les enquêtes, les questions et les réponses.
 
-  # Prérequis
+## Prérequis
 
-  Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
-  Node.js (version 12 ou supérieure)
-  MongoDB (version 4.0 ou supérieure)
+Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 
-  ## Installation
+Node.js (version 12 ou supérieure)
+MongoDB (version 4.0 ou supérieure)
 
-  1. **Clonez le repository :**
+**Installation**
 
-  ```bash
-  git clone https://github.com/shyshasy/db_ABC_Corporation.git
-  ```
+Clonez le repository :
 
-  2. **Accédez au dossier du projet :**
+````bash
+git clone https://github.com/shyshasy/db_ABC_Corporation.git
+````
+Accédez au dossier du projet :
 
-  ```bash
-  cd db_ABC_Corporation
-  ```
-  3. **Installer les dépendances :**
 
-  ```bash
-  npm install
-  ```
+`````bash
+cd db_ABC_Corporation
+`````
 
- 
-  
-  4. **Configurez la base de données :**
+**Installer les dépendances :**
 
- - Assurez-vous que MongoDB est en cours d'exécution sur votre machine locale.
- - Mettez les paramètres de connexion dans 
- `config/database.js.`
 
-## Utilisation
+````bash
+npm install
+````
+**Configurez la base de données :**
 
-  Pour démarrer l'application, exécutez la commande suivante :
+Assurez-vous que MongoDB est en cours d'exécution sur votre machine locale.
+Mettez les paramètres de connexion dans config/database.js.
+Utilisation
+Pour démarrer l'application, exécutez la commande suivante :
 
+````bash
+npm start
+````
 
-  ````bash
-  npm start
-  ````
+# Modules et Documentation
 
+L'application est structurée autour de plusieurs modules. Voici les détails sur chacun d'entre eux :
 
+**surveyModule.js**
 
+Ce module gère les opérations CRUD pour la collection surveys.
 
- ### Créez la base de données :
+**addSurvey(survey)**
 
+Cette fonction permet d'ajouter une enquête dans la base de données et retourne un message en cas de succès.
+Exemple :
 
-  ```bash
-  use fiche_enquete
-  ```
-  Créez les collections :
+javascript
 
-  ```bash
-  db.createCollection("surveys")
-  db.createCollection("questions")
-  db.createCollection("answers")`
-  ```
+````bash
+{
+  name: "Enquête de Satisfaction 001",
+  description: "Évaluation de la satisfaction des clients.",
+  createdAt: "2024-08-15",
+  createdBy: {
+      employeeName: "Fatoumata",
+      employeeRole: "Responsable d'achats et ventes"
+  },
+  questions: []
+}
+````
+**getSurveys()**
 
-  # Modules et Documentation
+Cette fonction retourne toutes les enquêtes stockées dans la collection surveys.
+Exemple :
 
-  L'application est structurée autour de plusieurs modules. Voici les détails sur chacun d'entre eux :
+javascript
 
-  ### surveyModule.js
-  Ce module gère les opérations CRUD pour la collection surveys.
+`````bash
+[
+  {
+    name: "Enquête de Satisfaction 001",
+    description: "Évaluation de la satisfaction des clients."
+  }
+]
+`````
+***getSurveyById(surveyId)**
 
-  ### addSurvey(document)
+Cette fonction retourne une enquête spécifique par son ID.
+Exemple :
 
-  Paramètres :
+javascript
 
-  document (Object) : L'objet contenant les informations de l'enquête à ajouter.
-  name (String) : Le nom de l'enquête.
-  description (String) : Une brève description de l'enquête.
-  createdAt (Date) : Date de création de l'enquête.
-  createdBy (Object) : L'employé qui a créé l'enquête (avec employeeName et employeeRole).
-  questions (Array<Object>) : Les questions associées à l'enquête.
-  Exemple :
+````bash
+{
+  _id: "612c1f1c9e2f4a001f4e2a59",
+  name: "Enquête de Satisfaction 001"
+}
+````
+**updateSurvey(surveyId, updateData)**
 
-  javascript
+Cette fonction met à jour les informations d'une enquête spécifique et retourne un message en cas de succès.
+Exemple :
 
-  ````bash
-  const newSurvey = {   
-      name: "Enquête de Satisfaction 001",
-      description: "Évaluation de la satisfaction des clients.",
-      createdAt: "2024-08-15",
-      createdBy: {
-          employeeName: "Fatoumata",
-          employeeRole: "Responsable d'achatset ventes"
-      },
-      questions: []
-  };
-  const result = await addSurvey(newSurvey);
-  ````
-  ### getSurveys()
+javascript
 
-  Description : Récupère toutes les enquêtes stockées dans la collection surveys.
+````bash
+{
+  name: "Enquête de Satisfaction Mise à Jour"
+}
+````
+**destroySurvey(surveyId)**
 
-  Retour : Array d'objets représentant les enquêtes.
+Cette fonction supprime une enquête de la base de données et retourne un message en cas de succès.
+Exemple :
 
-  Exemple :
+javascript
 
-  javascript
+````bash
+{
+  message: "Enquête supprimée avec succès"
+}
+````
+**questionModule.js**
 
-  ````bash
-  const surveys = await getSurveys();
-  console.log(surveys);
-  getSurveyById(surveyId)
-  ````
-  Paramètres :
+Ce module gère les opérations CRUD pour la collection questions.
 
-  surveyId (String) : L'ID de l'enquête à récupérer.
-  Description : Récupère une enquête spécifique par son ID.
+**addQuestion(question)**
 
-  Exemple :
+Cette fonction permet d'ajouter une question dans la base de données et retourne un message en cas de succès.
+Exemple :
 
-  javascript
+javascript
 
-  ````bash
-  const survey = await getSurveyById("612c1f1c9e2f4a001f4e2a59");
-  ````
- ## updateSurvey(surveyId, updateData)
+```bash
+{
+  title: "Comment évalueriez-vous notre service ?",
+  surveyId: "612c1f1c9e2f4a001f4e2a59"
+}
+```
 
-  Paramètres :
+**getQuestions()**
 
-  surveyId (String) : L'ID de l'enquête à mettre à jour.
-  updateData (Object) : Les nouvelles informations de l'enquête (e.g., name, description).
+Cette fonction retourne toutes les questions stockées dans la collection questions.
+Exemple :
 
-  Exemple :
+javascript
 
-  javascript
+````bash
+[
+  {
+    title: "Comment évalueriez-vous notre service ?"
+  }
+]
+````
+**updateQuestion(questionId, updateData)**
 
+Cette fonction met à jour les informations d'une question spécifique et retourne un message en cas de succès.
+Exemple :
 
-  ````bash
-  await updateSurvey("612c1f1c9e2f4a001f4e2a59", { name: "Enquête de Satisfaction Mise à Jour" });
-  ````
-  ### destroySurvey(surveyId)
+javascript
 
-  Paramètres :
+```bash
+{
+  title: "Question mise à jour"
+}
+```
 
-  surveyId (String) : L'ID de l'enquête à supprimer.
+**destroyQuestion(questionId)**
 
-  Exemple :
+Cette fonction supprime une question de la base de données et retourne un message en cas de succès.
+Exemple :
 
-  javascript
+javascript
 
-  ````bash
-  await destroySurvey("612c1f1c9e2f4a001f4e2a59");
-  ````
+````bash
+{
+  message: "Question supprimée avec succès"
+}
+````
+**answerModule.js**
 
-  ### questionModule.js
+Ce module gère les opérations CRUD pour la collection answers.
 
-  Ce module gère les opérations CRUD pour la collection questions.
+**addAnswer(answer)**
 
-  ### addQuestion(document)
+Cette fonction permet d'ajouter une réponse dans la base de données et retourne un message en cas de succès.
+Exemple :
 
-  Paramètres :
+javascript
 
-  document (Object) : L'objet contenant les informations de la question à ajouter.
-  title (String) : Le texte de la question.
-  surveyId (String) : L'ID de l'enquête à laquelle la question est liée.
+````bash
+{
+  text: "Très satisfait",
+  questionId: "612c1f1c9e2f4a001f4e2a59"
+}
+````
+**getAnswers()**
 
-  Exemple :
+Cette fonction retourne toutes les réponses stockées dans la collection answers.
+Exemple :
 
-  javascript
+javascript
 
-  ````bash
-  const newQuestion = {
-      title: "Comment évalueriez-vous notre service ?",
-      surveyId: "612c1f1c9e2f4a001f4e2a59"
-  };
-  const result = await addQuestion(newQuestion);
-  ````
-  ### getQuestions()
+`````bash
+[
+  {
+    text: "Très satisfait"
+  }
+]
+`````
+**getAnswerById(answerId)**
 
-  Description : Récupère toutes les questions stockées dans la collection questions.
+Cette fonction retourne une réponse spécifique par son ID.
+Exemple :
 
-  Retour : Array d'objets représentant les questions.
+javascript
 
-  Exemple :
+`````bash
+{
+  _id: "612c1f1c9e2f4a001f4e2a59",
+  text: "Très satisfait"
+}
+`````
+**updateAnswer(answerId, updateData)**
 
-  javascript
+Cette fonction met à jour les informations d'une réponse spécifique et retourne un message en cas de succès.
+Exemple :
 
-  ````bash
-  const questions = await getQuestions();
-  console.log(questions);`
-  ````
+javascript
 
- 
-  ### updateQuestion(questionId, updateData)
+````bash
+{
+  text: "Satisfait"
+}
+````
+**destroyAnswer(answerId)**
 
-  Paramètres :
+Cette fonction supprime une réponse de la base de données et retourne un message en cas de succès.
+Exemple :
 
-  questionId (String) : L'ID de la question à mettre à jour.
-  updateData (Object) : Les nouvelles informations de la question (e.g., title).
-  Exemple :
+javascript
 
-  javascript
+````bash
+{
+  message: "Réponse supprimée avec succès"
+}
 
-  ````bash
-  await updateQuestion("612c1f1c9e2f4a001f4e2a59", { title: "Question mise à jour" });
-  ````
+````
+# Auteur
 
-  #### destroyQuestion(questionId)
-
-  Paramètres :
-
-  questionId (String) : L'ID de la question à supprimer.
-
-  Exemple :
-
-  javascript
-
-
-  ````bash
-  await destroyQuestion("612c1f1c9e2f4a001f4e2a59");
-  ````
-
-  ### answerModule.js
-
-  Ce module gère les opérations CRUD pour la collection answers.
-
-  ### addAnswer(document)
-
-  Paramètres :
-
-  document (Object) : L'objet contenant les informations de la réponse à ajouter.
-  text (String) : Le texte de la réponse.
-  questionId (String) : L'ID de la question à laquelle la réponse est liée.
-  Exemple :
-
-  javascript
-
-  ````bash
-  const newAnswer = {
-      text: "Très satisfait",
-      questionId: "612c1f1c9e2f4a001f4e2a59"
-  };
-  const result = await addAnswer(newAnswer);
-  ````
-
-  ## getAnswers()
-
-  Description : Récupère toutes les réponses stockées dans la collection answers.
-
-  Retour : Array d'objets représentant les réponses.
-
-  Exemple :
-
-  javascript
-
-  ````bash
-  const answers = await getAnswers();
-  console.log(answers);
-  getAnswerById(answerId)
-  ````
-  Paramètres :
-
-  answerId (String) : L'ID de la réponse à récupérer.
-  Description : Récupère une réponse spécifique par son ID.
-
-  Exemple :
-
-  javascript
-
-  ````bash
-  const answer = await getAnswerById("612c1f1c9e2f4a001f4e2a59");
-  ````
-
-  ### updateAnswer(answerId, updateData)
-
-  Paramètres :
-
-  answerId (String) : L'ID de la réponse à mettre à jour.
-  updateData (Object) : Les nouvelles informations de la réponse (e.g., text).
-  Exemple :
-
-  javascript
-
-  ````bash
-  await updateAnswer("612c1f1c9e2f4a001f4e2a59", { text: "Satisfait" });`
-  ````
-
-  ### destroyAnswer(answerId)
-
-  Paramètres :
-
-  answerId (String) : L'ID de la réponse à supprimer.
-
-  Exemple :
-
-  javascript
-
-  ````bash
-  await destroyAnswer("612c1f1c9e2f4a001f4e2a59");
-  ````
-
-  
-  # Auteur
-
-  [Aichetou Taher Sy](https://github.com/shyshasy)
+[Aichetou Taher Sy](https://github.com/shyshasy)
