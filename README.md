@@ -84,7 +84,7 @@ javascript
   }
 ]
 `````
-***getSurveyById(surveyId)**
+**getSurveyById(surveyId)**
 
 Cette fonction retourne une enquête spécifique par son ID.
 Exemple :
