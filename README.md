@@ -31,11 +31,9 @@ cd db_ABC_Corporation
 ````bash
 npm install
 ````
-**Configurez la base de données :**
 
-Assurez-vous que MongoDB est en cours d'exécution sur votre machine locale.
-Mettez les paramètres de connexion dans config/database.js.
-Utilisation
+**Utilisation**
+
 Pour démarrer l'application, exécutez la commande suivante :
 
 ````bash
@@ -58,16 +56,18 @@ Exemple :
 javascript
 
 ````bash
-{
+const survey = {
+  id: 1,
   name: "Enquête de Satisfaction 001",
   description: "Évaluation de la satisfaction des clients.",
-  createdAt: "2024-08-15",
+  createdAt: "2024-07-25T08:00:00Z",
   createdBy: {
-      employeeName: "Fatoumata",
-      employeeRole: "Responsable d'achats et ventes"
+    employeeName: "Fatoumata",
+    employeeRole: "Responsable d'achats et ventes",
   },
-  questions: []
-}
+};
+await addSurvey(survey);
+
 ````
 **getSurveys()**
 
@@ -79,10 +79,17 @@ javascript
 `````bash
 [
   {
+    _id: "64eb7f1a7b2e3b001f4c5d70",
     name: "Enquête de Satisfaction 001",
     description: "Évaluation de la satisfaction des clients."
+  },
+  {
+    _id: "64eb7f1a7b2e3b001f4c5d71",
+    name: "Enquête de Satisfaction 002",
+    description: "Retour sur l'expérience utilisateur."
   }
 ]
+
 `````
 **getSurveyById(surveyId)**
 
@@ -92,10 +99,9 @@ Exemple :
 javascript
 
 ````bash
-{
-  _id: "612c1f1c9e2f4a001f4e2a59",
-  name: "Enquête de Satisfaction 001"
-}
+const survey = await getSurvey(1); // 1 étant l'ID de l'enquête à récupérer
+console.log(survey);
+
 ````
 **updateSurvey(surveyId, updateData)**
 
@@ -105,9 +111,11 @@ Exemple :
 javascript
 
 ````bash
-{
-  name: "Enquête de Satisfaction Mise à Jour"
-}
+const updateData = {
+  name: "Enquête de Satisfaction Mise à Jour",
+};
+await updateSurvey(1, updateData); // 1 étant l'ID de l'enquête à mettre à jour
+
 ````
 **destroySurvey(surveyId)**
 
@@ -117,9 +125,8 @@ Exemple :
 javascript
 
 ````bash
-{
-  message: "Enquête supprimée avec succès"
-}
+await destroySurvey(1); // 1 étant l'ID de l'enquête à supprimer
+
 ````
 **questionModule.js**
 
@@ -133,10 +140,14 @@ Exemple :
 javascript
 
 ```bash
-{
+const question = {
+  id: 1,
+  surveyId: 1,
   title: "Comment évalueriez-vous notre service ?",
-  surveyId: "612c1f1c9e2f4a001f4e2a59"
-}
+  type: "rating",
+};
+await addQuestion(question);
+
 ```
 
 **getQuestions()**
@@ -147,11 +158,9 @@ Exemple :
 javascript
 
 ````bash
-[
-  {
-    title: "Comment évalueriez-vous notre service ?"
-  }
-]
+const question = await getQuestion(1); // 1 étant l'ID de la question à récupérer
+console.log(question);
+
 ````
 **updateQuestion(questionId, updateData)**
 
@@ -161,9 +170,11 @@ Exemple :
 javascript
 
 ```bash
-{
-  title: "Question mise à jour"
-}
+const updateData = {
+  title: "Comment évalueriez-vous notre produit ?",
+};
+await updateQuestion(1, updateData); // 1 étant l'ID de la question à mettre à jour
+
 ```
 
 **destroyQuestion(questionId)**
@@ -174,9 +185,8 @@ Exemple :
 javascript
 
 ````bash
-{
-  message: "Question supprimée avec succès"
-}
+await destroyQuestion(1); // 1 étant l'ID de la question à supprimer
+
 ````
 **answerModule.js**
 
@@ -190,10 +200,13 @@ Exemple :
 javascript
 
 ````bash
-{
-  text: "Très satisfait",
-  questionId: "612c1f1c9e2f4a001f4e2a59"
-}
+const answer = {
+  id: 1,
+  questionId: 1,
+  title: "Très satisfait",
+};
+await addAnswer(answer);
+
 ````
 **getAnswers()**
 
@@ -205,9 +218,17 @@ javascript
 `````bash
 [
   {
-    text: "Très satisfait"
+    _id: "64eb7f1a7b2e3b001f4c5d70",
+    name: "Enquête de Satisfaction 001",
+    description: "Évaluation de la satisfaction des clients."
+  },
+  {
+    _id: "64eb7f1a7b2e3b001f4c5d71",
+    name: "Enquête de Satisfaction 002",
+    description: "Retour sur l'expérience utilisateur."
   }
 ]
+
 `````
 **getAnswerById(answerId)**
 
@@ -217,10 +238,9 @@ Exemple :
 javascript
 
 `````bash
-{
-  _id: "612c1f1c9e2f4a001f4e2a59",
-  text: "Très satisfait"
-}
+const answer = await getAnswer(1); // 1 étant l'ID de la réponse à récupérer
+console.log(answer);
+
 `````
 **updateAnswer(answerId, updateData)**
 
@@ -230,9 +250,11 @@ Exemple :
 javascript
 
 ````bash
-{
-  text: "Satisfait"
-}
+const updateData = {
+  title: "Satisfait",
+};
+await updateAnswer(1, updateData); // 1 étant l'ID de la réponse à mettre à jour
+
 ````
 **destroyAnswer(answerId)**
 
@@ -242,9 +264,8 @@ Exemple :
 javascript
 
 ````bash
-{
-  message: "Réponse supprimée avec succès"
-}
+await destroyAnswer(1); // 1 étant l'ID de la réponse à supprimer
+
 
 ````
 # Auteur
