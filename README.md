@@ -55,28 +55,32 @@ Exemple :
 
 javascript
 
-````bash
+```javascript
 const survey = {
-  id: 1,
   name: "Enquête de Satisfaction 001",
   description: "Évaluation de la satisfaction des clients.",
   createdAt: "2024-07-25T08:00:00Z",
   createdBy: {
     employeeName: "Fatoumata",
-    employeeRole: "Responsable d'achats et ventes",
+    employeeRole: "Responsable d'achats et ventes"
   },
+  options: {
+    minValue: 1,
+    maxValue: 5,
+    step: 1
+  }
 };
 await addSurvey(survey);
 
-````
+```
 **getSurveys()**
 
 Cette fonction retourne toutes les enquêtes stockées dans la collection surveys.
 Exemple :
 
-javascript
+javascriptscript
 
-`````bash
+```javascript
 [
   {
     _id: "64eb7f1a7b2e3b001f4c5d70",
@@ -90,44 +94,55 @@ javascript
   }
 ]
 
-`````
+```
 **getSurveyById(surveyId)**
 
 Cette fonction retourne une enquête spécifique par son ID.
 Exemple :
 
-javascript
+javascriptscript
 
-````bash
+```javascript
 const survey = await getSurvey(1); // 1 étant l'ID de l'enquête à récupérer
 console.log(survey);
 
-````
+```
 **updateSurvey(surveyId, updateData)**
 
 Cette fonction met à jour les informations d'une enquête spécifique et retourne un message en cas de succès.
 Exemple :
 
-javascript
+javascriptscript
 
-````bash
-const updateData = {
+```javascript
+const updateData =  {
   name: "Enquête de Satisfaction Mise à Jour",
+  description: "Mise à jour de l'évaluation de la satisfaction des clients.",
+  createdAt: "2024-07-25T08:00:00Z",
+  createdBy: {
+    employeeName: "Fatoumata",
+    employeeRole: "Responsable d'achats et ventes"
+  },
+  options: {
+    minValue: 1,
+    maxValue: 10,
+    step: 1
+  }
 };
 await updateSurvey(1, updateData); // 1 étant l'ID de l'enquête à mettre à jour
 
-````
+```
 **destroySurvey(surveyId)**
 
 Cette fonction supprime une enquête de la base de données et retourne un message en cas de succès.
 Exemple :
 
-javascript
+javascriptscript
 
-````bash
+```javascript
 await destroySurvey(1); // 1 étant l'ID de l'enquête à supprimer
 
-````
+```
 **questionModule.js**
 
 Ce module gère les opérations CRUD pour la collection questions.
@@ -137,14 +152,19 @@ Ce module gère les opérations CRUD pour la collection questions.
 Cette fonction permet d'ajouter une question dans la base de données et retourne un message en cas de succès.
 Exemple :
 
-javascript
+javascriptscript
 
-```bash
+```javascript
 const question = {
   id: 1,
   surveyId: 1,
   title: "Comment évalueriez-vous notre service ?",
   type: "rating",
+   options: {
+    minValue: 1,
+    maxValue: 5,
+    step: 1
+  }
 };
 await addQuestion(question);
 
@@ -155,23 +175,28 @@ await addQuestion(question);
 Cette fonction retourne toutes les questions stockées dans la collection questions.
 Exemple :
 
-javascript
+javascriptscript
 
-````bash
+```javascript
 const question = await getQuestion(1); // 1 étant l'ID de la question à récupérer
 console.log(question);
 
-````
+```
 **updateQuestion(questionId, updateData)**
 
 Cette fonction met à jour les informations d'une question spécifique et retourne un message en cas de succès.
 Exemple :
 
-javascript
+javascriptscript
 
-```bash
+```javascript
 const updateData = {
   title: "Comment évalueriez-vous notre produit ?",
+  options: {
+    minValue: 1,
+    maxValue: 10,
+    step: 0.5
+  }
 };
 await updateQuestion(1, updateData); // 1 étant l'ID de la question à mettre à jour
 
@@ -182,12 +207,12 @@ await updateQuestion(1, updateData); // 1 étant l'ID de la question à mettre �
 Cette fonction supprime une question de la base de données et retourne un message en cas de succès.
 Exemple :
 
-javascript
+javascriptscript
 
-````bash
+```javascript
 await destroyQuestion(1); // 1 étant l'ID de la question à supprimer
 
-````
+```
 **answerModule.js**
 
 Ce module gère les opérations CRUD pour la collection answers.
@@ -197,9 +222,9 @@ Ce module gère les opérations CRUD pour la collection answers.
 Cette fonction permet d'ajouter une réponse dans la base de données et retourne un message en cas de succès.
 Exemple :
 
-javascript
+javascriptscript
 
-````bash
+```javascript
 const answer = {
   id: 1,
   questionId: 1,
@@ -207,15 +232,15 @@ const answer = {
 };
 await addAnswer(answer);
 
-````
+```
 **getAnswers()**
 
 Cette fonction retourne toutes les réponses stockées dans la collection answers.
 Exemple :
 
-javascript
+javascriptscript
 
-`````bash
+```javascript
 [
   {
     _id: "64eb7f1a7b2e3b001f4c5d70",
@@ -229,45 +254,45 @@ javascript
   }
 ]
 
-`````
+```
 **getAnswerById(answerId)**
 
 Cette fonction retourne une réponse spécifique par son ID.
 Exemple :
 
-javascript
+javascriptscript
 
-`````bash
+```javascript
 const answer = await getAnswer(1); // 1 étant l'ID de la réponse à récupérer
 console.log(answer);
 
-`````
+```
 **updateAnswer(answerId, updateData)**
 
 Cette fonction met à jour les informations d'une réponse spécifique et retourne un message en cas de succès.
 Exemple :
 
-javascript
+javascriptscript
 
-````bash
+```javascript
 const updateData = {
   title: "Satisfait",
 };
 await updateAnswer(1, updateData); // 1 étant l'ID de la réponse à mettre à jour
 
-````
+```
 **destroyAnswer(answerId)**
 
 Cette fonction supprime une réponse de la base de données et retourne un message en cas de succès.
 Exemple :
 
-javascript
+javascriptscript
 
-````bash
+```javascript
 await destroyAnswer(1); // 1 étant l'ID de la réponse à supprimer
 
 
-````
+```
 # Auteur
 
 [Aichetou Taher Sy](https://github.com/shyshasy)
