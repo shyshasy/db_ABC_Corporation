@@ -11,6 +11,11 @@ const question ={
   surveyId: 1,
   title: "Comment évalueriez-vous notre service ?",
   type: "rating",
+  options: {
+    minValue: 1,  
+    maxValue: 5,  
+    step: 1  
+  }
   
 }
 
